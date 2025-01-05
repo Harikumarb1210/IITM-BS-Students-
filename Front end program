@@ -1,0 +1,114 @@
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class MentorshipAppFrontend extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        // Create a login page
+        VBox loginRoot = new VBox(10);
+        loginRoot.setPadding(new Insets(10));
+        loginRoot.setAlignment(Pos.CENTER);
+
+        Label loginLabel = new Label("Login");
+        TextField usernameField = new TextField();
+        TextField passwordField = new TextField();
+        Button loginButton = new Button("Login");
+
+        loginButton.setOnAction(event -> {
+            // Verify username and password
+            // For simplicity, this example just opens the dashboard
+            openDashboard(primaryStage);
+        });
+
+        loginRoot.getChildren().addAll(loginLabel, usernameField, passwordField, loginButton);
+
+        Scene loginScene = new Scene(loginRoot, 300, 200);
+        primaryStage.setTitle("Mentorship App");
+        primaryStage.setScene(loginScene);
+        primaryStage.show();
+    }
+
+    private void openDashboard(Stage primaryStage) {
+        // Create a dashboard
+        VBox dashboardRoot = new VBox(10);
+        dashboardRoot.setPadding(new Insets(10));
+        dashboardRoot.setAlignment(Pos.CENTER);
+
+        Label dashboardLabel = new Label("Dashboard");
+        Button mentorButton = new Button("Mentor Registration");
+        Button menteeButton = new Button("Mentee Registration");
+
+        mentorButton.setOnAction(event -> openMentorRegistration(primaryStage));
+        menteeButton.setOnAction(event -> openMenteeRegistration(primaryStage));
+
+        dashboardRoot.getChildren().addAll(dashboardLabel, mentorButton, menteeButton);
+
+        Scene dashboardScene = new Scene(dashboardRoot, 300, 200);
+        primaryStage.setTitle("Mentorship App");
+        primaryStage.setScene(dashboardScene);
+        primaryStage.show();
+    }
+
+    private void openMentorRegistration(Stage primaryStage) {
+        // Create a mentor registration page
+        VBox mentorRoot = new VBox(10);
+        mentorRoot.setPadding(new Insets(10));
+        mentorRoot.setAlignment(Pos.CENTER);
+
+        Label mentorLabel = new Label("Mentor Registration");
+        TextField nameField = new TextField();
+        TextField expertiseField = new TextField();
+        Button registerButton = new Button("Register");
+
+        registerButton.setOnAction(event -> {
+            // Register the mentor
+            // For simplicity, this example just opens the dashboard
+            openDashboard(primaryStage);
+        });
+
+        mentorRoot.getChildren().addAll(mentorLabel, nameField, expertiseField, registerButton);
+
+        Scene mentorScene = new Scene(mentorRoot, 300, 200);
+        primaryStage.setTitle("Mentorship App");
+        primaryStage.setScene(mentorScene);
+        primaryStage.show();
+    }
+
+    private void openMenteeRegistration(Stage primaryStage) {
+        // Create a mentee registration page
+        VBox menteeRoot = new VBox(10);
+        menteeRoot.setPadding(new Insets(10));
+        menteeRoot.setAlignment(Pos.CENTER);
+
+        Label menteeLabel = new Label("Mentee Registration");
+        TextField nameField = new TextField();
+        TextField goalsField = new TextField();
+        Button registerButton = new Button("Register");
+
+        registerButton.setOnAction(event -> {
+            // Register the mentee
+            // For simplicity, this example just opens the dashboard
+            openDashboard(primaryStage);
+        });
+
+        menteeRoot.getChildren().addAll(menteeLabel, nameField, goalsField, registerButton);
+
+        Scene menteeScene = new Scene(menteeRoot, 300, 200);
+        primaryStage.setTitle("Mentorship App");
+        primaryStage.setScene(menteeScene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+
