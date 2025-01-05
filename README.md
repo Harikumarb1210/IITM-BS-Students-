@@ -1,1 +1,1 @@
-# IITM-BS-Students-
+#Empowering knowledge - HackSprint
