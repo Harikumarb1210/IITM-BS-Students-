@@ -1,0 +1,130 @@
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MentorshipApp extends Application {
+
+    private List<Mentor> mentors = new ArrayList<>();
+    private List<Mentee> mentees = new ArrayList<>();
+
+    @Override
+    public void start(Stage primaryStage) {
+        VBox root = new VBox(10);
+        root.setPadding(new Insets(10));
+        root.setAlignment(Pos.CENTER);
+
+        Label label = new Label("Mentorship App");
+        Button mentorButton = new Button("Mentor Registration");
+        Button menteeButton = new Button("Mentee Registration");
+        Button loginButton = new Button("Login");
+        Button matchButton = new Button("Match Mentor and Mentee");
+
+        mentorButton.setOnAction(event -> registerMentor(primaryStage));
+        menteeButton.setOnAction(event -> registerMentee(primaryStage));
+        loginButton.setOnAction(event -> login(primaryStage));
+        matchButton.setOnAction(event -> matchMentorAndMentee());
+
+        root.getChildren().addAll(label, mentorButton, menteeButton, loginButton, matchButton);
+
+        Scene scene = new Scene(root, 300, 200);
+        primaryStage.setTitle("Mentorship App");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void registerMentor(Stage primaryStage) {
+        // Create a new stage for mentor registration
+        Stage mentorStage = new Stage();
+        VBox mentorRoot = new VBox(10);
+        mentorRoot.setPadding(new Insets(10));
+        mentorRoot.setAlignment(Pos.CENTER);
+
+        Label mentorLabel = new Label("Mentor Registration");
+        TextField nameField = new TextField();
+        TextField expertiseField = new TextField();
+        Button registerButton = new Button("Register");
+
+        registerButton.setOnAction(event -> {
+            String name = nameField.getText();
+            String expertise = expertiseField.getText();
+            Mentor mentor = new Mentor(name, expertise);
+            mentors.add(mentor);
+            mentorStage.close();
+        });
+
+        mentorRoot.getChildren().addAll(mentorLabel, nameField, expertiseField, registerButton);
+        Scene mentorScene = new Scene(mentorRoot, 300, 200);
+        mentorStage.setTitle("Mentor Registration");
+        mentorStage.setScene(mentorScene);
+        mentorStage.show();
+    }
+
+    private void registerMentee(Stage primaryStage) {
+        // Create a new stage for mentee registration
+        Stage menteeStage = new Stage();
+        VBox menteeRoot = new VBox(10);
+        menteeRoot.setPadding(new Insets(10));
+        menteeRoot.setAlignment(Pos.CENTER);
+
+        Label menteeLabel = new Label("Mentee Registration");
+        TextField nameField = new TextField();
+        TextField goalsField = new TextField();
+        Button registerButton = new Button("Register");
+
+        registerButton.setOnAction(event -> {
+            String name = nameField.getText();
+            String goals = goalsField.getText();
+            Mentee mentee = new Mentee(name, goals);
+            mentees.add(mentee);
+            menteeStage.close();
+        });
+
+        menteeRoot.getChildren().addAll(menteeLabel, nameField, goalsField, registerButton);
+        Scene menteeScene = new Scene(menteeRoot, 300, 200);
+        menteeStage.setTitle("Mentee Registration");
+        menteeStage.setScene(menteeScene);
+        menteeStage.show();
+    }
+
+    private void login(Stage primaryStage) {
+        // Create a new stage for login
+        Stage loginStage = new Stage();
+        VBox loginRoot = new VBox(10);
+        loginRoot.setPadding(new Insets(10));
+        loginRoot.setAlignment(Pos.CENTER);
+
+        Label loginLabel = new Label("Login");
+        TextField usernameField = new TextField();
+        TextField passwordField = new TextField();
+        Button loginButton = new Button("Login");
+
+        loginButton.setOnAction(event -> {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            // Verify username and password
+            loginStage.close();
+        });
+
+        loginRoot.getChildren().addAll(loginLabel, usernameField, passwordField, loginButton);
+        Scene loginScene = new Scene(loginRoot, 300, 200);
+        loginStage.setTitle("Login");
+        loginStage.setScene(loginScene);
+        loginStage.show();
+    }
+
+    private void matchMentorAndMentee() {
+        // Implement a matching algorithm to pair mentors with mentees
+        // For simplicity, this example just pairs the first mentor with the first mentee
+        if (!mentors.isEmpty() && !mentees.isEmpty()) {
+            Mentor mentor = mentors.get(0);
+            Mentee mentee = mentees.get(0);
+```
